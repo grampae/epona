@@ -20,7 +20,7 @@ Once installed, restart Mythic to build a new agent.
 - Cross-platform: Linux, macOS, and Windows from a single codebase
 - Mythic encryption (AES-256-CBC + HMAC-SHA256 via Mythic's staging protocol)
 - Dual C2 transport: MQTT or HTTP, selected at build time
-- MQTT broker failover — up to 4 independently-encoded broker hostnames baked in; agent tries each in order on failure, transparent to Mythic.  This is to allow the operator to employ MQTT bridges that forward traffic to and from the main MQTT C2 Profile broker.  When this is employed the main MQTT C2 Profile and Mythic C2 are not visible to the victim. See <a href="https://github.com/grampae/styx">styx</a>.
+- MQTT broker failover — up to 4 independently-encoded broker hostnames; agent tries each in order on failure, transparent to Mythic.  This is to allow the operator to employ MQTT bridges that forward traffic to and from the main MQTT C2 Profile broker.  When this is employed the main MQTT C2 Profile and Mythic C2 are not visible to the victim. See <a href="https://github.com/grampae/styx">styx</a>.
 - Comptime ChaCha20 string obfuscation — per-string key+nonce derived from build salt; sensitive strings never appear in plaintext in the binary
 - Per-build entropy — `build_salt` varies string ciphertext, junk blob size, section offsets, and code variants across every build
 - Comptime code metamorphism — key functions compile to build-salt-selected instruction sequences so YARA rules don't match across builds
@@ -80,10 +80,10 @@ upload | `upload {"file":"<file_id>","path":"/tmp/tool"}` | Upload a file to the
 
 ### mqtt
 
-Epona connects through MQTT bridge endpoints. Hostnames, port, topic, credentials, and TLS settings are baked in at build time.
+Epona connects through MQTT bridge endpoints. Hostnames, port, topic, credentials, and TLS settings are set at build time.
 
-Up to four bridge hostnames can be baked in (`mqtt_server_0` through `mqtt_server_3`). On each beacon cycle the agent tries them in order and falls back to the next on any connection or protocol error. Only `mqtt_server_0` is required; the rest default to empty and are skipped. Each hostname is encrypted independently with its own ChaCha20 key so a static analyst cannot correlate the fallback addresses. Configure fallback hosts through `mqtt_server_1`, `mqtt_server_2`, and `mqtt_server_3` when the MQTT C2 profile used for the operation exposes those optional parameters.
+Up to four bridge hostnames can be used (`mqtt_server_0` through `mqtt_server_3`). On each beacon cycle the agent tries them in order and falls back to the next on any connection or protocol error. Only `mqtt_server_0` is required; the rest default to empty and are skipped. Each hostname is encrypted independently with its own ChaCha20 key so a static analyst cannot correlate the fallback addresses. Configure fallback hosts through `mqtt_server_1`, `mqtt_server_2`, and `mqtt_server_3` when the MQTT C2 profile used for the operation exposes those optional parameters.
 
 ### http
 
-Epona polls the Mythic HTTP C2 profile. Host, port, and URI are baked in at build time.
+Epona polls the Mythic HTTP C2 profile. Host, port, and URI are used at build time.
