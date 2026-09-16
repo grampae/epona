@@ -1,0 +1,16 @@
+# Zig build artifacts
+.zig-cache/
+zig-out/
+*.o
+
+# Python
+__pycache__/
+*.pyc
+
+# Claude memory files
+project_epona.md
+
+# Local development helper; not part of the distributable agent.
+sync_to_installed.sh
+
+sync_to_installed.sh
