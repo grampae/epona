@@ -20,7 +20,7 @@ Once installed, restart Mythic to build a new agent.
 - Cross-platform: Linux, macOS, and Windows from a single codebase
 - Mythic encryption (AES-256-CBC + HMAC-SHA256 via Mythic's staging protocol)
 - Dual C2 transport: MQTT or HTTP, selected at build time
-- MQTT broker failover — up to 4 independently-encoded broker hostnames baked in; agent tries each in order on failure, transparent to Mythic.  This is to allow the operator to employ MQTT bridges that forward traffic to and from the main MQTT C2 Profile broker.  When this is employed the main MQTT C2 Profile and Mythic C2 are not visible to the victim.
+- MQTT broker failover — up to 4 independently-encoded broker hostnames baked in; agent tries each in order on failure, transparent to Mythic.  This is to allow the operator to employ MQTT bridges that forward traffic to and from the main MQTT C2 Profile broker.  When this is employed the main MQTT C2 Profile and Mythic C2 are not visible to the victim. See <a href="https://github.com/grampae/styx">styx</a>.
 - Comptime ChaCha20 string obfuscation — per-string key+nonce derived from build salt; sensitive strings never appear in plaintext in the binary
 - Per-build entropy — `build_salt` varies string ciphertext, junk blob size, section offsets, and code variants across every build
 - Comptime code metamorphism — key functions compile to build-salt-selected instruction sequences so YARA rules don't match across builds
