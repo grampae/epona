@@ -12,7 +12,6 @@ From the Mythic install directory, install from the public repository that hosts
 ./mythic-cli install github https://github.com/grampae/epona
 ```
 
-Once installed, restart Mythic to build a new agent.
 
 ## Notable Features
 
