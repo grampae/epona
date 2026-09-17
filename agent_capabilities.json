@@ -1,0 +1,25 @@
+{
+  "os": ["Windows", "macOS", "Linux"],
+  "languages": ["zig"],
+  "features": {
+    "mythic": [
+      "docker",
+      "file chunking",
+      "file browser",
+      "process browser",
+      "process responses",
+      "socks"
+    ],
+    "custom": [
+      "key exchange",
+      "multiple egress",
+      "killdate"
+    ]
+  },
+  "payload_output": ["elf", "macho", "pe", "shellcode"],
+  "architectures": ["x86_64", "arm_64"],
+  "c2": ["mqtt", "http"],
+  "mythic_version": "3.3.1-rc71",
+  "agent_version": "0.1.0",
+  "supported_wrappers": []
+}
